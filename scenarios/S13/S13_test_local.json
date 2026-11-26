@@ -1,0 +1,23 @@
+{
+    "info": {
+        "description": "Dolphin Dataset v5",
+        "version": "5.1",
+        "year": 2026
+    },
+    "licenses": [
+        {
+            "id": 0,
+            "name": "Private",
+            "url": ""
+        }
+    ],
+    "categories": [
+        {
+            "id": 0,
+            "name": "dolphin",
+            "supercategory": "marine_object"
+        }
+    ],
+    "images": [],
+    "annotations": []
+}
