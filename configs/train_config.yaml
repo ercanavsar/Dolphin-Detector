@@ -1,0 +1,80 @@
+# ==============================================================================
+# Training configuration
+# ==============================================================================
+# Settings shared by the three detectors, together with the hyperparameters of
+# each. Only the entries listed here are passed to the frameworks; everything
+# else is left at the default of the respective reference implementation.
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Settings applied to all three detectors
+# ------------------------------------------------------------------------------
+global:
+  seed: 42
+  batch_size: 6
+  max_epochs: 100           # fixed number of epochs; training stops here
+  patience: 0               # early stopping disabled
+  workers: 4
+  device: "0"               # GPU index or 'cuda'
+  img_size: 640             # used by YOLO26m and RT-DETRv2; DINO rescales
+                            # the shorter side instead, see its own config
+
+  # paths, to be set for the local installation
+  dataset_root: "/path/to/dolphin_study/dataset"
+  scenarios_dir: "/path/to/dolphin_study/scenarios"
+  output_dir: "/path/to/dolphin_study/experiments"
+
+# ------------------------------------------------------------------------------
+# 2. Augmentation, YOLO26m only
+# ------------------------------------------------------------------------------
+# These values are read by the YOLO training script alone. RT-DETRv2 and DINO
+# use the augmentation pipelines defined in their own repositories, which
+# differ from this one and from each other. Mosaic and MixUp are switched off
+# because neither has a counterpart in the other two frameworks.
+augmentations:
+  fliplr: 0.5               # horizontal flip probability
+  flipud: 0.0               # vertical flip disabled
+  degrees: 0.0              # no rotation
+  translate: 0.1            # translation, fraction of image size
+  scale: 0.5                # scale gain
+  hsv_h: 0.015              # hue
+  hsv_s: 0.7                # saturation
+  hsv_v: 0.4                # brightness
+  mosaic: 0.0               # disabled
+  mixup: 0.0                # disabled
+
+# ------------------------------------------------------------------------------
+# 3. Hyperparameters of each detector
+# ------------------------------------------------------------------------------
+# Learning rates and weight decay follow the values recommended for each
+# architecture rather than being forced to a common setting.
+models:
+  # --- YOLO26m, single-stage convolutional ---
+  yolo:
+    model_name: "yolo26m.pt"
+    optimizer: "AdamW"
+    lr0: 0.001                # Ultralytics default for AdamW
+    lrf: 0.01                 # final learning rate as a fraction of lr0
+    weight_decay: 0.0005
+    warmup_epochs: 3.0
+
+  # --- RT-DETRv2, hybrid encoder transformer ---
+  # Trained through the reference implementation at
+  # https://github.com/lyuwenyu/RT-DETR, initialised from the published
+  # rtdetrv2_r50vd_6x_coco_ema checkpoint.
+  rtdetr:
+    optimizer: "AdamW"
+    lr0: 0.0001
+    lr_backbone: 0.00001 # backbone updated more slowly than the head
+    weight_decay: 0.0001
+
+  # --- DINO with ResNet-50 backbone ---
+  # Trained through the reference implementation at
+  # https://github.com/IDEA-Research/DINO, initialised from the published
+  # 4-scale checkpoint.
+  dino:
+    optimizer: "AdamW"
+    lr0: 0.0001
+    lr_backbone: 0.00001
+    weight_decay: 0.0001
+    warmup_epochs: 3.0

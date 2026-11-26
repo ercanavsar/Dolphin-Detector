@@ -1,0 +1,99 @@
+# ==============================================================================
+# Scenario definitions
+# ==============================================================================
+# Each scenario lists the dataset subsets used for training and for the two
+# test sets. Subsets are never split between training and testing, so a folder
+# appears on one side only within a given scenario. Folder names correspond to
+# the subsets described in the repository README.
+# ==============================================================================
+
+
+dataset_root: "/path/to/dolphin_study/dataset"
+
+# Categories present in the annotation file. The single-class setup used in
+# this study keeps the first and treats frames with the second as background,
+# so the generated scenario files contain only the dolphin category.
+names:
+  0: "dolphin"
+  1: "other"
+
+scenarios:
+  S1:
+    train_folders: ["dolphin_a", "bg_local_a"]
+    test_folders_local: ["dolphin_b", "bg_local_b"]
+    test_folders_ext: ["online_dolphin_b", "online_other_b", "bg_online_other_b"]
+
+  S2:
+    train_folders: ["dolphin_a", "bg_local_a", "other_local", "bg_other_local"]
+    test_folders_local: ["dolphin_b", "bg_local_b"]
+    test_folders_ext: ["online_dolphin_b", "online_other_b", "bg_online_other_b"]
+
+  S3:
+    train_folders: ["dolphin_a", "bg_local_a", "other_local", "bg_other_local", "online_dolphin_a", "bg_online_dolphin_a"]
+    test_folders_local: ["dolphin_b", "bg_local_b"]
+    test_folders_ext: ["online_dolphin_b", "online_other_b", "bg_online_other_b"]
+
+  S4:
+    train_folders: ["dolphin_a", "bg_local_a", "other_local", "bg_other_local", "online_dolphin_a", "bg_online_dolphin_a", "online_other_a", "bg_online_other_a"]
+    test_folders_local: ["dolphin_b", "bg_local_b"]
+    test_folders_ext: ["online_dolphin_b", "online_other_b", "bg_online_other_b"]
+
+  S5:
+    train_folders: ["dolphin_b", "bg_local_b"]
+    test_folders_local: ["dolphin_a", "bg_local_a"]
+    test_folders_ext: ["online_dolphin_b", "online_other_b", "bg_online_other_b"]
+
+  S6:
+    train_folders: ["dolphin_b", "bg_local_b", "other_local", "bg_other_local"]
+    test_folders_local: ["dolphin_a", "bg_local_a"]
+    test_folders_ext: ["online_dolphin_b", "online_other_b", "bg_online_other_b"]
+    
+  S7:
+    train_folders: ["dolphin_b", "bg_local_b", "other_local", "bg_other_local", "online_dolphin_a", "bg_online_dolphin_a"]
+    test_folders_local: ["dolphin_a", "bg_local_a"]
+    test_folders_ext: ["online_dolphin_b", "online_other_b", "bg_online_other_b"]
+
+  S8:
+    train_folders: ["dolphin_b", "bg_local_b", "other_local", "bg_other_local", "online_dolphin_a", "bg_online_dolphin_a", "online_other_a", "bg_online_other_a"]
+    test_folders_local: ["dolphin_a", "bg_local_a"]
+    test_folders_ext: ["online_dolphin_b", "online_other_b", "bg_online_other_b"]
+    
+  S9:
+    train_folders: ["dolphin_a", "bg_local_a", "dolphin_b", "bg_local_b", "other_local", "bg_other_local"]
+    test_folders_local: []
+    test_folders_ext: ["online_dolphin_b", "online_other_b", "bg_online_other_b"]
+    
+  S10:
+    train_folders: ["online_dolphin_a", "bg_online_dolphin_a", "online_other_a", "bg_online_other_a"]
+    test_folders_local: []
+    test_folders_ext: ["online_dolphin_b", "online_other_b", "bg_online_other_b"]
+    
+  S11:
+    train_folders: ["dolphin_a", "bg_local_a", "dolphin_b", "bg_local_b", "other_local", "bg_other_local", "online_dolphin_a", "bg_online_dolphin_a"]
+    test_folders_local: []
+    test_folders_ext: ["online_dolphin_b", "online_other_b", "bg_online_other_b"]
+    
+  S12:
+    train_folders: ["dolphin_a", "bg_local_a", "dolphin_b", "bg_local_b", "other_local", "bg_other_local", "online_dolphin_a", "bg_online_dolphin_a", "online_other_a", "bg_online_other_a"]
+    test_folders_local: []
+    test_folders_ext: ["online_dolphin_b", "online_other_b", "bg_online_other_b"]
+    
+  S13:
+    train_folders: ["dolphin_a", "bg_local_a", "dolphin_b", "bg_local_b", "other_local", "bg_other_local"]
+    test_folders_local: []
+    test_folders_ext: ["online_dolphin_a", "bg_online_dolphin_a", "online_other_a", "bg_online_other_a"]
+    
+  S14:
+    train_folders: ["online_dolphin_b", "online_other_b", "bg_online_other_b"]
+    test_folders_local: []
+    test_folders_ext: ["online_dolphin_a", "bg_online_dolphin_a", "online_other_a", "bg_online_other_a"]
+    
+  S15:
+    train_folders: ["dolphin_a", "bg_local_a", "dolphin_b", "bg_local_b", "other_local", "bg_other_local", "online_dolphin_b"]
+    test_folders_local: []
+    test_folders_ext: ["online_dolphin_a", "bg_online_dolphin_a", "online_other_a", "bg_online_other_a"]
+    
+  S16:
+    train_folders: ["dolphin_a", "bg_local_a", "dolphin_b", "bg_local_b", "other_local", "bg_other_local", "online_dolphin_b", "online_other_b", "bg_online_other_b"]
+    test_folders_local: []
+    test_folders_ext: ["online_dolphin_a", "bg_online_dolphin_a", "online_other_a", "bg_online_other_a"]
