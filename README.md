@@ -1,7 +1,11 @@
 # Dolphin Detector
 
-Code and trained weights for a benchmark study of underwater dolphin detection,
-carried out to support the development of automated bycatch mitigation in towed
+Code and trained weights accompanying the manuscript *A cross-source benchmark of
+object detectors for underwater dolphin detection in bycatch mitigation*
+(under review). Links to the published article and the dataset will be added
+here once available.
+
+The study aims to support the development of automated bycatch mitigation in towed
 fishing gear.
 
 Three object detectors (YOLO26m, RT-DETRv2 and DINO) are trained on the same
